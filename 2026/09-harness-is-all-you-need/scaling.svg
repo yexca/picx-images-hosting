@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" role="img" aria-labelledby="title desc">
+  <title id="title">Illustrative harness scaling curve</title>
+  <desc id="desc">Success rises from 21 percent at harness depth zero to 69 percent at depth five.</desc>
+  <style>
+    .axis { stroke: #526779; stroke-width: 2; }
+    .grid { stroke: #d6e0e8; stroke-width: 1; }
+    .line { fill: none; stroke: #315b8a; stroke-width: 5; stroke-linejoin: round; stroke-linecap: round; }
+    .point { fill: #fff; stroke: #315b8a; stroke-width: 4; }
+    .label { fill: #263746; font: 18px sans-serif; }
+    .value { fill: #17324d; font: 700 16px sans-serif; text-anchor: middle; }
+    .title { fill: #17324d; font: 700 24px sans-serif; text-anchor: middle; }
+  </style>
+  <rect x="8" y="8" width="884" height="454" rx="10" fill="#fff" stroke="#6c7d8f" stroke-width="2"/>
+  <text class="title" x="450" y="46">Illustrative harness scaling curve</text>
+  <line class="grid" x1="105" y1="100" x2="820" y2="100"/>
+  <line class="grid" x1="105" y1="166" x2="820" y2="166"/>
+  <line class="grid" x1="105" y1="232" x2="820" y2="232"/>
+  <line class="grid" x1="105" y1="298" x2="820" y2="298"/>
+  <line class="grid" x1="105" y1="364" x2="820" y2="364"/>
+  <line class="axis" x1="105" y1="100" x2="105" y2="364"/>
+  <line class="axis" x1="105" y1="364" x2="820" y2="364"/>
+  <text class="label" x="55" y="106">80%</text>
+  <text class="label" x="55" y="172">60%</text>
+  <text class="label" x="55" y="238">40%</text>
+  <text class="label" x="55" y="304">20%</text>
+  <text class="label" x="70" y="370">0%</text>
+  <text class="label" x="462" y="425" text-anchor="middle">Harness depth (enabled feedback interfaces)</text>
+  <path class="line" d="M130 295 L268 268 L406 216 L544 199 L682 169 L820 136"/>
+  <circle class="point" cx="130" cy="295" r="8"/><circle class="point" cx="268" cy="268" r="8"/>
+  <circle class="point" cx="406" cy="216" r="8"/><circle class="point" cx="544" cy="199" r="8"/>
+  <circle class="point" cx="682" cy="169" r="8"/><circle class="point" cx="820" cy="136" r="8"/>
+  <text class="value" x="130" y="278">21%</text><text class="value" x="268" y="251">29%</text>
+  <text class="value" x="406" y="199">45%</text><text class="value" x="544" y="182">50%</text>
+  <text class="value" x="682" y="152">59%</text><text class="value" x="820" y="119">69%</text>
+  <text class="label" x="130" y="390" text-anchor="middle">0</text><text class="label" x="268" y="390" text-anchor="middle">1</text>
+  <text class="label" x="406" y="390" text-anchor="middle">2</text><text class="label" x="544" y="390" text-anchor="middle">3</text>
+  <text class="label" x="682" y="390" text-anchor="middle">4</text><text class="label" x="820" y="390" text-anchor="middle">5</text>
+</svg>
