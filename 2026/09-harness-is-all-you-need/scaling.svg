@@ -1,38 +1,94 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" role="img" aria-labelledby="title desc">
-  <title id="title">Illustrative harness scaling curve</title>
-  <desc id="desc">Success rises from 21 percent at harness depth zero to 69 percent at depth five.</desc>
-  <style>
-    .axis { stroke: #526779; stroke-width: 2; }
-    .grid { stroke: #d6e0e8; stroke-width: 1; }
-    .line { fill: none; stroke: #315b8a; stroke-width: 5; stroke-linejoin: round; stroke-linecap: round; }
-    .point { fill: #fff; stroke: #315b8a; stroke-width: 4; }
-    .label { fill: #263746; font: 18px sans-serif; }
-    .value { fill: #17324d; font: 700 16px sans-serif; text-anchor: middle; }
-    .title { fill: #17324d; font: 700 24px sans-serif; text-anchor: middle; }
-  </style>
-  <rect x="8" y="8" width="884" height="454" rx="10" fill="#fff" stroke="#6c7d8f" stroke-width="2"/>
-  <text class="title" x="450" y="46">Illustrative harness scaling curve</text>
-  <line class="grid" x1="105" y1="100" x2="820" y2="100"/>
-  <line class="grid" x1="105" y1="166" x2="820" y2="166"/>
-  <line class="grid" x1="105" y1="232" x2="820" y2="232"/>
-  <line class="grid" x1="105" y1="298" x2="820" y2="298"/>
-  <line class="grid" x1="105" y1="364" x2="820" y2="364"/>
-  <line class="axis" x1="105" y1="100" x2="105" y2="364"/>
-  <line class="axis" x1="105" y1="364" x2="820" y2="364"/>
-  <text class="label" x="55" y="106">80%</text>
-  <text class="label" x="55" y="172">60%</text>
-  <text class="label" x="55" y="238">40%</text>
-  <text class="label" x="55" y="304">20%</text>
-  <text class="label" x="70" y="370">0%</text>
-  <text class="label" x="462" y="425" text-anchor="middle">Harness depth (enabled feedback interfaces)</text>
-  <path class="line" d="M130 295 L268 268 L406 216 L544 199 L682 169 L820 136"/>
-  <circle class="point" cx="130" cy="295" r="8"/><circle class="point" cx="268" cy="268" r="8"/>
-  <circle class="point" cx="406" cy="216" r="8"/><circle class="point" cx="544" cy="199" r="8"/>
-  <circle class="point" cx="682" cy="169" r="8"/><circle class="point" cx="820" cy="136" r="8"/>
-  <text class="value" x="130" y="278">21%</text><text class="value" x="268" y="251">29%</text>
-  <text class="value" x="406" y="199">45%</text><text class="value" x="544" y="182">50%</text>
-  <text class="value" x="682" y="152">59%</text><text class="value" x="820" y="119">69%</text>
-  <text class="label" x="130" y="390" text-anchor="middle">0</text><text class="label" x="268" y="390" text-anchor="middle">1</text>
-  <text class="label" x="406" y="390" text-anchor="middle">2</text><text class="label" x="544" y="390" text-anchor="middle">3</text>
-  <text class="label" x="682" y="390" text-anchor="middle">4</text><text class="label" x="820" y="390" text-anchor="middle">5</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 480" role="img" aria-labelledby="title desc">
+  <title id="title">Harness scaling curve across cumulative runtime stages</title>
+  <desc id="desc">Macro-average task success rises from 21.4% at Base to 28.6% (+Plan), 44.8% (+Tools), 49.7% (+Mem), 58.5% (+Verify), and 68.7% (+Full), alongside individual trajectories for API workflows, repository edits, and browser tasks.</desc>
+  <defs>
+    <marker id="axis-arrow" markerWidth="8" markerHeight="8" refX="6.5" refY="2.5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,5 L7.5,2.5 z" fill="#3d4652"/>
+    </marker>
+    <style>
+      .card { fill: #ffffff; stroke: #cbd5e1; stroke-width: 2; }
+      .title { fill: #1e293b; font: 700 21px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; text-anchor: middle; }
+      .grid { stroke: #e2e8f0; stroke-width: 1.2; }
+      .axis { stroke: #3d4652; stroke-width: 2; marker-end: url(#axis-arrow); }
+      .tick { stroke: #3d4652; stroke-width: 1.8; }
+      .label { fill: #3d4652; font: 15px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+      .axis-title { fill: #3d4652; font: 700 15.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; text-anchor: middle; }
+      .macro-line { fill: none; stroke: #2d5bff; stroke-width: 4; stroke-linejoin: round; stroke-linecap: round; }
+      .api-line { fill: none; stroke: #0e8a72; stroke-width: 2.2; stroke-dasharray: 8 5; stroke-linejoin: round; }
+      .browser-line { fill: none; stroke: #c97a10; stroke-width: 2.2; stroke-dasharray: 9 4 2.5 4; stroke-linejoin: round; }
+      .repo-line { fill: none; stroke: #64748b; stroke-width: 2.2; stroke-dasharray: 3 4; stroke-linejoin: round; }
+      .point { fill: #ffffff; stroke: #2d5bff; stroke-width: 3; }
+      .val { fill: #1d4ed8; font: 700 14px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; text-anchor: middle; }
+      .leg-text { fill: #334155; font: 13.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    </style>
+  </defs>
+
+  <rect class="card" x="10" y="10" width="900" height="460" rx="12"/>
+  <text class="title" x="460" y="46">Harness scaling curve across cumulative runtime stages</text>
+
+  <!-- Horizontal grid lines: y = 376 - 3.5 * pct -->
+  <line class="grid" x1="100" y1="96" x2="840" y2="96"/>
+  <line class="grid" x1="100" y1="166" x2="840" y2="166"/>
+  <line class="grid" x1="100" y1="236" x2="840" y2="236"/>
+  <line class="grid" x1="100" y1="306" x2="840" y2="306"/>
+
+  <!-- Axes -->
+  <line class="axis" x1="100" y1="376" x2="862" y2="376"/>
+  <line class="axis" x1="100" y1="376" x2="100" y2="78"/>
+
+  <!-- Y-axis labels -->
+  <text class="label" x="88" y="101" text-anchor="end">80%</text>
+  <text class="label" x="88" y="171" text-anchor="end">60%</text>
+  <text class="label" x="88" y="241" text-anchor="end">40%</text>
+  <text class="label" x="88" y="311" text-anchor="end">20%</text>
+  <text class="label" x="88" y="381" text-anchor="end">0%</text>
+  <text class="axis-title" transform="translate(36,236) rotate(-90)">Task success (%)</text>
+
+  <!-- X-axis ticks & stage labels -->
+  <line class="tick" x1="140" y1="376" x2="140" y2="384"/><text class="label" x="140" y="404" text-anchor="middle">Base</text>
+  <line class="tick" x1="272" y1="376" x2="272" y2="384"/><text class="label" x="272" y="404" text-anchor="middle">+Plan</text>
+  <line class="tick" x1="404" y1="376" x2="404" y2="384"/><text class="label" x="404" y="404" text-anchor="middle">+Tools</text>
+  <line class="tick" x1="536" y1="376" x2="536" y2="384"/><text class="label" x="536" y="404" text-anchor="middle">+Mem</text>
+  <line class="tick" x1="668" y1="376" x2="668" y2="384"/><text class="label" x="668" y="404" text-anchor="middle">+Verify</text>
+  <line class="tick" x1="800" y1="376" x2="800" y2="384"/><text class="label" x="800" y="404" text-anchor="middle">+Full</text>
+  <text class="axis-title" x="470" y="442" style="font-style: italic; font-weight: 600;">Cumulative harness stage</text>
+
+  <!-- Task family curves -->
+  <path class="api-line" d="M140 293.8 L272 264.7 L404 195.4 L536 186.3 L668 156.6 L800 122.6"/>
+  <path class="browser-line" d="M140 296.6 L272 273.1 L404 223.8 L536 204.2 L668 181.4 L800 149.2"/>
+  <path class="repo-line" d="M140 313.0 L272 290.3 L404 238.8 L536 215.7 L668 176.2 L800 134.9"/>
+
+  <!-- Macro average primary curve -->
+  <path class="macro-line" d="M140 301.1 L272 275.9 L404 219.2 L536 202.1 L668 171.3 L800 135.6"/>
+
+  <!-- Markers -->
+  <circle class="point" cx="140" cy="301.1" r="5.5"/>
+  <circle class="point" cx="272" cy="275.9" r="5.5"/>
+  <circle class="point" cx="404" cy="219.2" r="5.5"/>
+  <circle class="point" cx="536" cy="202.1" r="5.5"/>
+  <circle class="point" cx="668" cy="171.3" r="5.5"/>
+  <circle class="point" cx="800" cy="135.6" r="5.5"/>
+
+  <!-- Value labels (clear of all four curves) -->
+  <text class="val" x="146" y="334">21.4%</text>
+  <text class="val" x="278" y="312">28.6%</text>
+  <text class="val" x="412" y="259">44.8%</text>
+  <text class="val" x="542" y="238">49.7%</text>
+  <text class="val" x="674" y="203">58.5%</text>
+  <text class="val" x="813" y="140" style="text-anchor: start;">68.7%</text>
+
+  <!-- Legend -->
+  <rect x="122" y="106" width="320" height="58" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.2"/>
+  <line class="macro-line" x1="136" y1="124" x2="172" y2="124"/>
+  <circle class="point" cx="154" cy="124" r="4"/>
+  <text class="leg-text" x="180" y="129" style="font-weight: 700;">Macro avg</text>
+
+  <line class="api-line" x1="292" y1="124" x2="328" y2="124"/>
+  <text class="leg-text" x="336" y="129">API workflow</text>
+
+  <line class="repo-line" x1="136" y1="148" x2="172" y2="148"/>
+  <text class="leg-text" x="180" y="153">Repo edit</text>
+
+  <line class="browser-line" x1="292" y1="148" x2="328" y2="148"/>
+  <text class="leg-text" x="336" y="153">Browser</text>
 </svg>
